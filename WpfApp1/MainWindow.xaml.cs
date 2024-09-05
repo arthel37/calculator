@@ -34,7 +34,7 @@ namespace WpfApp1
             {
                 if (textBox.Text != "")
                 {
-                    currentValue = Double.Parse(textBox.Text);
+                    Double.TryParse(textBox.Text, out currentValue);
                 }
                 else
                 {
@@ -42,13 +42,13 @@ namespace WpfApp1
                 }
             }
 
-            if (op == "+")
+            if (prevOp == "-" && (op == "*" || op == "/"))
+            {
+                calculatedValue = currentValue;
+            } 
+            else if (op == "+" || op == "-")
             {
                 calculatedValue += currentValue;
-            }
-            else if (op == "-")
-            {
-                calculatedValue -= currentValue;
             }
             else if (op == "*")
             {
